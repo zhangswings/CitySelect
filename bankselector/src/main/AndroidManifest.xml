@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.cretin.tools.cityselect">
+    package="com.xs.widget">
 
-    <application>
-        <activity android:name=".ui.SelectCityActivity"></activity>
-    </application>
 
 </manifest>

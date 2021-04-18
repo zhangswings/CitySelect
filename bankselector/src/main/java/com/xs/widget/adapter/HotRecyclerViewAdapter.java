@@ -1,4 +1,4 @@
-package com.cretin.tools.cityselect.adapter;
+package com.xs.widget.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,9 +8,9 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.cretin.tools.cityselect.R;
-import com.cretin.tools.cityselect.callback.OnItemClickListener;
-import com.cretin.tools.cityselect.model.DataInfoModel;
+import com.xs.widget.R;
+import com.xs.widget.callback.OnItemClickListener;
+import com.xs.widget.model.DataInfoModel;
 
 import java.util.List;
 

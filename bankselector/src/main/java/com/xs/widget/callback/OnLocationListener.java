@@ -1,4 +1,4 @@
-package com.cretin.tools.cityselect.callback;
+package com.xs.widget.callback;
 
 /**
  * @date: on 2019-10-30

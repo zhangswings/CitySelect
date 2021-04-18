@@ -1,4 +1,4 @@
-package com.cretin.tools.cityselect.utils;
+package com.xs.widget.utils;
 
 import android.content.res.Resources;
 

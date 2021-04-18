@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".SelfSelectCityActivity">
 
-    <com.cretin.tools.cityselect.view.CitySelectView
+    <com.xs.widget.view.CitySelectView
         android:id="@+id/city_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

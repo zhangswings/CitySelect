@@ -50,7 +50,7 @@
         app:layout_constraintTop_toBottomOf="@+id/ed_search"
         tools:listitem="@layout/item_layout_normal" />
 
-    <com.cretin.tools.cityselect.view.FastIndexView
+    <com.xs.widget.view.FastIndexView
         android:id="@+id/fastIndexView"
         android:layout_width="25dp"
         android:layout_height="0dp"

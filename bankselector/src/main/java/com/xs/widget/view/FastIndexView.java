@@ -1,4 +1,4 @@
-package com.cretin.tools.cityselect.view;
+package com.xs.widget.view;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -11,7 +11,7 @@ import android.view.View;
 
 import androidx.annotation.Nullable;
 
-import com.cretin.tools.cityselect.utils.AppUtils;
+import com.xs.widget.utils.AppUtils;
 
 public class FastIndexView extends View {
 

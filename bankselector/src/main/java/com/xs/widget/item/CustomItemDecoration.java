@@ -1,4 +1,4 @@
-package com.cretin.tools.cityselect.item;
+package com.xs.widget.item;
 
 import android.content.Context;
 import android.graphics.Canvas;

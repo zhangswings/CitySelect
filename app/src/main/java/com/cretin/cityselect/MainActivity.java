@@ -8,7 +8,7 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.cretin.tools.cityselect.model.DataModel;
+import com.xs.widget.model.DataModel;
 
 public class MainActivity extends AppCompatActivity {
     public static final int requestCode = 1001;

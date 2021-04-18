@@ -1,4 +1,4 @@
-package com.cretin.tools.cityselect.model;
+package com.xs.widget.model;
 
 import java.io.Serializable;
 

@@ -1,4 +1,4 @@
-package com.cretin.tools.cityselect.view;
+package com.xs.widget.view;
 
 import android.app.Activity;
 import android.content.Context;
@@ -13,14 +13,14 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.cretin.tools.cityselect.R;
-import com.cretin.tools.cityselect.adapter.MainAdapter;
-import com.cretin.tools.cityselect.callback.OnCitySelectListener;
-import com.cretin.tools.cityselect.callback.OnItemClickListener;
-import com.cretin.tools.cityselect.callback.OnLocationListener;
-import com.cretin.tools.cityselect.item.CustomItemDecoration;
-import com.cretin.tools.cityselect.model.DataInfoModel;
-import com.cretin.tools.cityselect.model.DataModel;
+import com.xs.widget.R;
+import com.xs.widget.adapter.MainAdapter;
+import com.xs.widget.callback.OnCitySelectListener;
+import com.xs.widget.callback.OnItemClickListener;
+import com.xs.widget.callback.OnLocationListener;
+import com.xs.widget.item.CustomItemDecoration;
+import com.xs.widget.model.DataInfoModel;
+import com.xs.widget.model.DataModel;
 import com.github.stuxuhai.jpinyin.ChineseHelper;
 import com.github.stuxuhai.jpinyin.PinyinException;
 import com.github.stuxuhai.jpinyin.PinyinFormat;

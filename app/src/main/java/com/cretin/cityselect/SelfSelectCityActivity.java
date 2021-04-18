@@ -10,11 +10,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.blankj.utilcode.util.ResourceUtils;
 import com.cretin.cityselect.utils.JSONHelper;
-import com.cretin.tools.cityselect.CityResponse;
-import com.cretin.tools.cityselect.callback.OnCitySelectListener;
-import com.cretin.tools.cityselect.callback.OnLocationListener;
-import com.cretin.tools.cityselect.model.DataModel;
-import com.cretin.tools.cityselect.view.CitySelectView;
+import com.xs.widget.CityResponse;
+import com.xs.widget.callback.OnCitySelectListener;
+import com.xs.widget.callback.OnLocationListener;
+import com.xs.widget.model.DataModel;
+import com.xs.widget.view.CitySelectView;
 
 import java.util.ArrayList;
 import java.util.List;

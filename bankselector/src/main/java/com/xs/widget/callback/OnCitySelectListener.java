@@ -1,6 +1,6 @@
-package com.cretin.tools.cityselect.callback;
+package com.xs.widget.callback;
 
-import com.cretin.tools.cityselect.model.DataModel;
+import com.xs.widget.model.DataModel;
 
 /**
  * @date: on 2019-10-30
