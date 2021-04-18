@@ -6,8 +6,7 @@
     android:layout_height="match_parent"
     android:background="#ffffff"
     android:focusable="true"
-    android:focusableInTouchMode="true"
-    tools:context=".MainActivity">
+    android:focusableInTouchMode="true">
 
     <EditText
         android:id="@+id/ed_search"
@@ -18,12 +17,12 @@
         android:background="@drawable/bg_search"
         android:drawableLeft="@mipmap/search_view"
         android:drawablePadding="5dp"
-        android:hint="请输入城市名或拼音"
-        android:paddingLeft="14dp"
-        android:textColor="#4a4a4a"
-        android:textColorHint="#aaaaaa"
+        android:hint="@string/str_hint_search_city"
+        android:paddingLeft="12dp"
+        android:textColor="#404040"
+        android:textColorHint="#A4A9B0"
         android:textCursorDrawable="@drawable/text_cursor"
-        android:textSize="14sp"
+        android:textSize="13sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@+id/tv_right"
         app:layout_constraintTop_toTopOf="parent" />
@@ -48,15 +47,16 @@
         android:layout_height="0dp"
         android:layout_marginTop="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ed_search" />
+        app:layout_constraintTop_toBottomOf="@+id/ed_search"
+        tools:listitem="@layout/item_layout_normal" />
 
     <com.cretin.tools.cityselect.view.FastIndexView
         android:id="@+id/fastIndexView"
         android:layout_width="25dp"
         android:layout_height="0dp"
         android:layout_marginTop="15dp"
-        android:paddingRight="5dp"
         android:layout_marginBottom="15dp"
+        android:paddingRight="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHeight_percent="0.7"
         app:layout_constraintRight_toRightOf="parent"
@@ -64,7 +64,6 @@
 
     <TextView
         android:id="@+id/tv_index"
-        android:visibility="gone"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@drawable/shape_index_bg"
@@ -72,6 +71,7 @@
         android:text="A"
         android:textColor="#ffffff"
         android:textSize="38sp"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintLeft_toLeftOf="parent"

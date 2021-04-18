@@ -31,11 +31,11 @@ public class FastIndexView extends View {
     public FastIndexView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         mPaint = new Paint();
-        mPaint.setTextSize(AppUtils.dp2px(14));
+        mPaint.setTextSize(AppUtils.dp2px(12));
         mPaint.setAntiAlias(true);
         //获取文字被选中的颜色
 //        selectedColor = ContextCompat.getColor(context, );
-        selectedColor = Color.parseColor("#999DA1");
+        selectedColor = Color.parseColor("#666666");
     }
 
     @Override
