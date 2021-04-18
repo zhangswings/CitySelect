@@ -104,7 +104,7 @@
       citySelectView.bindData(allCitys, hotCitys, currentCity);
 
       //设置搜索框的文案提示
-      citySelectView.setSearchTips("请输入城市名称或者拼音");
+      citySelectView.setSearchTips("搜索");
                               
       //设置城市选择之后的事件监听
       citySelectView.setOnCitySelectListener(new OnCitySelectListener() {
