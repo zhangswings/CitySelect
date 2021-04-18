@@ -1,27 +1,28 @@
 package com.cretin.tools.cityselect.adapter;
 
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.cretin.tools.cityselect.R;
 import com.cretin.tools.cityselect.callback.OnItemClickListener;
-import com.cretin.tools.cityselect.model.CityInfoModel;
+import com.cretin.tools.cityselect.model.DataInfoModel;
 
 import java.util.List;
 
 public class HotRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private List<CityInfoModel> mDatas;
+    private List<DataInfoModel> mDatas;
 
     private Context mContext;
 
     private OnItemClickListener itemClickListener;
 
-    public HotRecyclerViewAdapter(Context context, List<CityInfoModel> data) {
+    public HotRecyclerViewAdapter(Context context, List<DataInfoModel> data) {
         this.mDatas = data;
         this.mContext = context;
     }
@@ -33,9 +34,9 @@ public class HotRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.Vi
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
-        CityInfoModel cityInfoModel = mDatas.get(position);
+        DataInfoModel dataInfoModel = mDatas.get(position);
         NormalHolder realHolder = (NormalHolder) holder;
-        realHolder.tvCity.setText(cityInfoModel.getCityName());
+        realHolder.tvCity.setText(dataInfoModel.getCityName());
         realHolder.tvCity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

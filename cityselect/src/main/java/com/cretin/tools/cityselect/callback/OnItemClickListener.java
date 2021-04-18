@@ -1,6 +1,6 @@
 package com.cretin.tools.cityselect.callback;
 
-import com.cretin.tools.cityselect.model.CityInfoModel;
+import com.cretin.tools.cityselect.model.DataInfoModel;
 
 /**
  * @date: on 2019-10-30
@@ -14,5 +14,5 @@ public interface OnItemClickListener {
      *
      * @param dataInfoModel
      */
-    void onItemClick(CityInfoModel dataInfoModel);
+    void onItemClick(DataInfoModel dataInfoModel);
 }

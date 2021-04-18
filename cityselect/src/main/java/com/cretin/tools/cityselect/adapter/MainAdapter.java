@@ -1,25 +1,26 @@
 package com.cretin.tools.cityselect.adapter;
 
 import android.content.Context;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.cretin.tools.cityselect.R;
 import com.cretin.tools.cityselect.callback.OnItemClickListener;
 import com.cretin.tools.cityselect.callback.OnLocationListener;
-import com.cretin.tools.cityselect.model.CityInfoModel;
+import com.cretin.tools.cityselect.model.DataInfoModel;
 
 import java.util.List;
 
 public class MainAdapter extends RecyclerView.Adapter<MainAdapter.BaseViewHolder> {
 
-    private List<CityInfoModel> mDatas;
+    private List<DataInfoModel> mDatas;
 
-    private List<CityInfoModel> hotCitys;
+    private List<DataInfoModel> hotCitys;
 
     private Context mContext;
 
@@ -27,12 +28,12 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.BaseViewHolder
 
     private OnLocationListener locationListener;
 
-    public MainAdapter(Context context, List<CityInfoModel> data) {
+    public MainAdapter(Context context, List<DataInfoModel> data) {
         this.mDatas = data;
         this.mContext = context;
     }
 
-    public void bindHotCity(List<CityInfoModel> hotCitys) {
+    public void bindHotCity(List<DataInfoModel> hotCitys) {
         this.hotCitys = hotCitys;
     }
 
@@ -42,13 +43,13 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.BaseViewHolder
         View view = null;
 
         //根据viewtype来创建条目
-        if (viewType == CityInfoModel.TYPE_NORMAL) {
+        if (viewType == DataInfoModel.TYPE_NORMAL) {
             view = LayoutInflater.from(mContext).inflate(R.layout.item_layout_normal, parent, false);
             return new NormalHolder(view);
-        } else if (viewType == CityInfoModel.TYPE_CURRENT) {
+        } else if (viewType == DataInfoModel.TYPE_CURRENT) {
             view = LayoutInflater.from(mContext).inflate(R.layout.layout_current_city, parent, false);
             return new CurrentCityHolder(view);
-        } else if (viewType == CityInfoModel.TYPE_HOT) {
+        } else if (viewType == DataInfoModel.TYPE_HOT) {
             view = LayoutInflater.from(mContext).inflate(R.layout.layout_hot_view, parent, false);
             return new HotCityHolder(view);
         }
@@ -58,8 +59,8 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.BaseViewHolder
 
     @Override
     public void onBindViewHolder(BaseViewHolder holder, final int position) {
-        CityInfoModel cityInfoModel = mDatas.get(position);
-        if (cityInfoModel.getType() == CityInfoModel.TYPE_NORMAL) {
+        DataInfoModel cityInfoModel = mDatas.get(position);
+        if (cityInfoModel.getType() == DataInfoModel.TYPE_NORMAL) {
             NormalHolder realHolder = (NormalHolder) holder;
             realHolder.tvContent.setText(cityInfoModel.getCityName());
             realHolder.tvContent.setOnClickListener(new View.OnClickListener() {
@@ -70,7 +71,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.BaseViewHolder
                     }
                 }
             });
-        } else if (cityInfoModel.getType() == CityInfoModel.TYPE_CURRENT) {
+        } else if (cityInfoModel.getType() == DataInfoModel.TYPE_CURRENT) {
             //当前城市
             final CurrentCityHolder cityHolder = (CurrentCityHolder) holder;
             cityHolder.tv_current_city.setText(cityInfoModel.getCityName());
@@ -84,7 +85,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.BaseViewHolder
                     }
                 }
             });
-        } else if (cityInfoModel.getType() == CityInfoModel.TYPE_HOT) {
+        } else if (cityInfoModel.getType() == DataInfoModel.TYPE_HOT) {
             //热门城市
             if (hotCitys != null) {
                 HotRecyclerViewAdapter adapter = new HotRecyclerViewAdapter(mContext, hotCitys);
@@ -92,7 +93,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.BaseViewHolder
                 hotCityHolder.recyclerView.setLayoutManager(new GridLayoutManager(mContext, 3));
                 adapter.setItemClickListener(new OnItemClickListener() {
                     @Override
-                    public void onItemClick(CityInfoModel dataInfoModel) {
+                    public void onItemClick(DataInfoModel dataInfoModel) {
                         if (itemClickListener != null) {
                             itemClickListener.onItemClick(dataInfoModel);
                         }

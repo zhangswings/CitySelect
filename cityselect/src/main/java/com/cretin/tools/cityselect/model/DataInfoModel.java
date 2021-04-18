@@ -6,7 +6,7 @@ package com.cretin.tools.cityselect.model;
  * @email: mxnzp_life@163.com
  * @desc: 添加描述
  */
-public class CityInfoModel {
+public class DataInfoModel {
     public static final int TYPE_NORMAL = 0;
     public static final int TYPE_CURRENT = 1;//当前城市
     public static final int TYPE_HOT = 2;//热门城市
@@ -17,11 +17,11 @@ public class CityInfoModel {
     private String sortName;//用于排序的全拼音 这个是用于后面的排序以及搜索
     private Object extra;//附加参数 比如 一般来说 城市都有对应的一个id 可以存储在这里
 
-    public CityInfoModel() {
+    public DataInfoModel() {
 
     }
 
-    public CityInfoModel(int type, String cityName, String sortId, String sortName, Object extra) {
+    public DataInfoModel(int type, String cityName, String sortId, String sortName, Object extra) {
         this.type = type;
         this.cityName = cityName;
         this.sortId = sortId;
@@ -29,7 +29,7 @@ public class CityInfoModel {
         this.extra = extra;
     }
 
-    public CityInfoModel(int type) {
+    public DataInfoModel(int type) {
         this.type = type;
     }
 

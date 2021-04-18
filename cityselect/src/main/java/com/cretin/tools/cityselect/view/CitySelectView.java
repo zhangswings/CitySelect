@@ -2,9 +2,6 @@ package com.cretin.tools.cityselect.view;
 
 import android.app.Activity;
 import android.content.Context;
-import android.support.constraint.ConstraintLayout;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
@@ -12,13 +9,17 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.cretin.tools.cityselect.R;
 import com.cretin.tools.cityselect.adapter.MainAdapter;
 import com.cretin.tools.cityselect.callback.OnCitySelectListener;
 import com.cretin.tools.cityselect.callback.OnItemClickListener;
 import com.cretin.tools.cityselect.callback.OnLocationListener;
 import com.cretin.tools.cityselect.item.CustomItemDecoration;
-import com.cretin.tools.cityselect.model.CityInfoModel;
+import com.cretin.tools.cityselect.model.DataInfoModel;
 import com.cretin.tools.cityselect.model.DataModel;
 import com.github.stuxuhai.jpinyin.ChineseHelper;
 import com.github.stuxuhai.jpinyin.PinyinException;
@@ -48,11 +49,11 @@ public class CitySelectView extends ConstraintLayout {
 
     //data and model
     //主要用于展示数据的list
-    private List<CityInfoModel> list;
+    private List<DataInfoModel> list;
     //第一次加载之后缓存的数据
-    private List<CityInfoModel> cacheList;
+    private List<DataInfoModel> cacheList;
     //用于存储搜索结果的list
-    private List<CityInfoModel> searchList;
+    private List<DataInfoModel> searchList;
 
     //页面recyclerview的适配器
     private MainAdapter mainAdapter;
@@ -124,19 +125,19 @@ public class CitySelectView extends ConstraintLayout {
 
             @Override
             public String getGroupName(int position) {
-                CityInfoModel cityInfoModel = list.get(position);
-                if (cityInfoModel.getType() == CityInfoModel.TYPE_CURRENT || cityInfoModel.getType() == CityInfoModel.TYPE_HOT) {
-                    return cityInfoModel.getSortName();
+                DataInfoModel dataInfoModel = list.get(position);
+                if (dataInfoModel.getType() == DataInfoModel.TYPE_CURRENT || dataInfoModel.getType() == DataInfoModel.TYPE_HOT) {
+                    return dataInfoModel.getSortName();
                 }
                 //拼音都是小写的
-                return cityInfoModel.getSortId().toUpperCase();
+                return dataInfoModel.getSortId().toUpperCase();
             }
         }));
         mainAdapter = new MainAdapter(mContext, list);
         //设置item的点击事件
         mainAdapter.setItemClickListener(new OnItemClickListener() {
             @Override
-            public void onItemClick(CityInfoModel dataInfoModel) {
+            public void onItemClick(DataInfoModel dataInfoModel) {
                 if (citySelectListener != null) {
                     citySelectListener.onCitySelect(new DataModel(dataInfoModel.getCityName(), dataInfoModel.getExtra()));
                 }
@@ -232,31 +233,31 @@ public class CitySelectView extends ConstraintLayout {
             for (DataModel dataModel : allCity) {
                 try {
                     String pingYin = PinyinHelper.convertToPinyinString(dataModel.getDataName(), " ", PinyinFormat.WITHOUT_TONE);
-                    cacheList.add(new CityInfoModel(CityInfoModel.TYPE_NORMAL, dataModel.getDataName(), pingYin.substring(0, 1), pingYin, dataModel.getExtra()));
+                    cacheList.add(new DataInfoModel(DataInfoModel.TYPE_NORMAL, dataModel.getDataName(), pingYin.substring(0, 1), pingYin, dataModel.getExtra()));
                 } catch (PinyinException e) {
                     e.printStackTrace();
                 }
             }
             //排序
-            Collections.sort(cacheList, new Comparator<CityInfoModel>() {
+            Collections.sort(cacheList, new Comparator<DataInfoModel>() {
                 @Override
-                public int compare(CityInfoModel o1, CityInfoModel o2) {
+                public int compare(DataInfoModel o1, DataInfoModel o2) {
                     return o1.getSortName().compareTo(o2.getSortName());
                 }
             });
 
             if (hotCity != null) {
-                List<CityInfoModel> hotList = new ArrayList<>();
+                List<DataInfoModel> hotList = new ArrayList<>();
                 for (DataModel dataModel : hotCity) {
-                    hotList.add(new CityInfoModel(0, dataModel.getDataName(), "", "", dataModel.getExtra()));
+                    hotList.add(new DataInfoModel(0, dataModel.getDataName(), "", "", dataModel.getExtra()));
                 }
 
                 mainAdapter.bindHotCity(hotList);
-                cacheList.add(0, new CityInfoModel(CityInfoModel.TYPE_HOT, "", "#", "热门城市", "hot"));
+                cacheList.add(0, new DataInfoModel(DataInfoModel.TYPE_HOT, "", "#", "热门城市", "hot"));
             }
 
             if (currentCity != null)
-                cacheList.add(0, new CityInfoModel(CityInfoModel.TYPE_CURRENT, currentCity.getDataName(), "*", "当前定位城市", currentCity.getExtra()));
+                cacheList.add(0, new DataInfoModel(DataInfoModel.TYPE_CURRENT, currentCity.getDataName(), "*", "当前定位城市", currentCity.getExtra()));
 
             this.list.clear();
             this.list.addAll(cacheList);
@@ -275,11 +276,11 @@ public class CitySelectView extends ConstraintLayout {
         if (!hasBindData) {
             throw new RuntimeException("请先绑定数据再调用重新绑定当前城市的方法");
         }
-        for (CityInfoModel cityInfoModel : cacheList) {
-            if (cityInfoModel.getType() == CityInfoModel.TYPE_CURRENT) {
+        for (DataInfoModel dataInfoModel : cacheList) {
+            if (dataInfoModel.getType() == DataInfoModel.TYPE_CURRENT) {
                 //有 找到了
-                cityInfoModel.setCityName(currentCity.getDataName());
-                cityInfoModel.setExtra(currentCity.getExtra());
+                dataInfoModel.setCityName(currentCity.getDataName());
+                dataInfoModel.setExtra(currentCity.getExtra());
                 mainAdapter.notifyDataSetChanged();
                 return;
             }
@@ -293,8 +294,8 @@ public class CitySelectView extends ConstraintLayout {
             letter = "*";
         }
         for (int i = 0; i < list.size(); i++) {
-            CityInfoModel cityInfoModel = list.get(i);
-            if (cityInfoModel.getSortId().toUpperCase().equals(letter)) {
+            DataInfoModel dataInfoModel = list.get(i);
+            if (dataInfoModel.getSortId().toUpperCase().equals(letter)) {
                 layoutManager.scrollToPositionWithOffset(i, 0);
                 return;
             }
@@ -306,31 +307,31 @@ public class CitySelectView extends ConstraintLayout {
         searchList.clear();
         boolean isChiness = ChineseHelper.containsChinese(key);
         if (isChiness) {
-            for (CityInfoModel cityInfoModel : cacheList) {
+            for (DataInfoModel dataInfoModel : cacheList) {
                 boolean has = true;
                 HH:
                 for (char c : key.toCharArray()) {
-                    if (!cityInfoModel.getCityName().contains(c + "")) {
+                    if (!dataInfoModel.getCityName().contains(c + "")) {
                         has = false;
                         break HH;
                     }
                 }
                 if (has) {
-                    searchList.add(cityInfoModel);
+                    searchList.add(dataInfoModel);
                 }
             }
         } else {
-            for (CityInfoModel cityInfoModel : cacheList) {
+            for (DataInfoModel dataInfoModel : cacheList) {
                 boolean has = true;
                 HH:
                 for (char c : key.toCharArray()) {
-                    if (!cityInfoModel.getSortName().contains(c + "")) {
+                    if (!dataInfoModel.getSortName().contains(c + "")) {
                         has = false;
                         break HH;
                     }
                 }
                 if (has) {
-                    searchList.add(cityInfoModel);
+                    searchList.add(dataInfoModel);
                 }
             }
         }
