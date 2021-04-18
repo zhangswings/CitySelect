@@ -40,7 +40,9 @@ import java.util.TimerTask;
  * @desc: 选择城市的View
  */
 public class CitySelectView extends ConstraintLayout {
-    //views
+    /**
+     * views
+     */
     private EditText edSearch;
     private TextView tvCancel;
     private RecyclerView mainRecyclerView;
@@ -48,30 +50,46 @@ public class CitySelectView extends ConstraintLayout {
     private TextView indexView;
 
     //data and model
-    //主要用于展示数据的list
+    /**
+     * 主要用于展示数据的list
+     */
     private List<DataInfoModel> list;
-    //第一次加载之后缓存的数据
+    /**
+     * 第一次加载之后缓存的数据
+     */
     private List<DataInfoModel> cacheList;
-    //用于存储搜索结果的list
+    /**
+     * 用于存储搜索结果的list
+     */
     private List<DataInfoModel> searchList;
 
-    //页面recyclerview的适配器
+    /**
+     * 页面recyclerview的适配器
+     */
     private MainAdapter mainAdapter;
-    //布局管理器
+    /**
+     * 布局管理器
+     */
     private LinearLayoutManager layoutManager;
 
     private Context mContext;
 
-    //定时器
+    /**
+     * 定时器
+     */
     private Timer timer;
-    //定时任务
+    /**
+     * 定时任务
+     */
     private TimerTask timerTask;
 
     private OnCitySelectListener citySelectListener;
 
     private OnLocationListener locationListener;
 
-    //记录是否绑定过数据
+    /**
+     * 记录是否绑定过数据
+     */
     private boolean hasBindData = false;
 
     public CitySelectView(Context context) {
@@ -89,15 +107,11 @@ public class CitySelectView extends ConstraintLayout {
 
     private void init(Context context, AttributeSet attrs, int defStyleAttr) {
         mContext = context;
-
         View.inflate(context, R.layout.layout_city_select_view, this);
 
         //读取xml属性 todo
-
         initView();
-
         initAdapter();
-
         initListener();
     }
 
@@ -216,7 +230,11 @@ public class CitySelectView extends ConstraintLayout {
         });
     }
 
-    //设置搜索输入框的提示文案
+    /**
+     * 设置搜索输入框的提示文案
+     *
+     * @param tips
+     */
     public void setSearchTips(String tips) {
         edSearch.setHint(tips);
     }
@@ -256,8 +274,9 @@ public class CitySelectView extends ConstraintLayout {
                 cacheList.add(0, new DataInfoModel(DataInfoModel.TYPE_HOT, "", "#", "热门城市", "hot"));
             }
 
-            if (currentCity != null)
+            if (currentCity != null) {
                 cacheList.add(0, new DataInfoModel(DataInfoModel.TYPE_CURRENT, currentCity.getDataName(), "*", "当前定位城市", currentCity.getExtra()));
+            }
 
             this.list.clear();
             this.list.addAll(cacheList);

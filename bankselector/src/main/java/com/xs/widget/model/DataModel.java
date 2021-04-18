@@ -3,15 +3,18 @@ package com.xs.widget.model;
 import java.io.Serializable;
 
 /**
- * @date: on 2019-10-30
- * @author: a112233
- * @email: mxnzp_life@163.com
+ * @author author
  * @desc: 用户需要传入的数据
  */
 public class DataModel implements Serializable {
 
     private String dataName;
     private Object extra;
+
+    public String bankName;
+    public String cardNo;
+    public String cardType;
+    public String parentBankNo;
 
     public DataModel() {
     }
@@ -36,5 +39,6 @@ public class DataModel implements Serializable {
     public void setExtra(Object extra) {
         this.extra = extra;
     }
+
 
 }

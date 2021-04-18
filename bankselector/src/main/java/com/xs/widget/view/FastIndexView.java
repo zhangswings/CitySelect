@@ -13,6 +13,11 @@ import androidx.annotation.Nullable;
 
 import com.xs.widget.utils.AppUtils;
 
+/**
+ * 字母导航
+ *
+ * @author author
+ */
 public class FastIndexView extends View {
 
     private static final String INDEX_NAME = "#ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -35,7 +40,7 @@ public class FastIndexView extends View {
         mPaint.setTextSize(AppUtils.dp2px(12));
         mPaint.setAntiAlias(true);
         //获取文字被选中的颜色
-//        selectedColor = ContextCompat.getColor(context, );
+        //selectedColor = ContextCompat.getColor(context, );
         selectedColor = Color.parseColor("#666666");
     }
 

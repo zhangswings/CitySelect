@@ -1,4 +1,4 @@
-package com.xs.widget;
+package com.cretin.cityselect;
 
 import java.util.List;
 

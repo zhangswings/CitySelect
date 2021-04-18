@@ -10,7 +10,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.blankj.utilcode.util.ResourceUtils;
 import com.cretin.cityselect.utils.JSONHelper;
-import com.xs.widget.CityResponse;
 import com.xs.widget.callback.OnCitySelectListener;
 import com.xs.widget.callback.OnLocationListener;
 import com.xs.widget.model.DataModel;
