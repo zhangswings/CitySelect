@@ -1,1 +1,1 @@
-include ':app', ':cityselect'
+include ':app', ':bankselector'
