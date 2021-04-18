@@ -1,6 +1,6 @@
 package com.cretin.tools.cityselect.callback;
 
-import com.cretin.tools.cityselect.model.CityModel;
+import com.cretin.tools.cityselect.model.DataModel;
 
 /**
  * @date: on 2019-10-30
@@ -10,8 +10,16 @@ import com.cretin.tools.cityselect.model.CityModel;
  */
 public interface OnCitySelectListener {
 
-    void onCitySelect(CityModel cityModel);
+    /**
+     * 选择Item
+     *
+     * @param dataModel
+     */
+    void onCitySelect(DataModel dataModel);
 
+    /**
+     * 选择取消
+     */
     void onSelectCancel();
 
 }

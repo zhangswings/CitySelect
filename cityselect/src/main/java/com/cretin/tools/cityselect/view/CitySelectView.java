@@ -19,7 +19,7 @@ import com.cretin.tools.cityselect.callback.OnItemClickListener;
 import com.cretin.tools.cityselect.callback.OnLocationListener;
 import com.cretin.tools.cityselect.item.CustomItemDecoration;
 import com.cretin.tools.cityselect.model.CityInfoModel;
-import com.cretin.tools.cityselect.model.CityModel;
+import com.cretin.tools.cityselect.model.DataModel;
 import com.github.stuxuhai.jpinyin.ChineseHelper;
 import com.github.stuxuhai.jpinyin.PinyinException;
 import com.github.stuxuhai.jpinyin.PinyinFormat;
@@ -136,9 +136,9 @@ public class CitySelectView extends ConstraintLayout {
         //设置item的点击事件
         mainAdapter.setItemClickListener(new OnItemClickListener() {
             @Override
-            public void onItemClick(CityInfoModel cityInfoModel) {
+            public void onItemClick(CityInfoModel dataInfoModel) {
                 if (citySelectListener != null) {
-                    citySelectListener.onCitySelect(new CityModel(cityInfoModel.getCityName(), cityInfoModel.getExtra()));
+                    citySelectListener.onCitySelect(new DataModel(dataInfoModel.getCityName(), dataInfoModel.getExtra()));
                 }
             }
         });
@@ -227,12 +227,12 @@ public class CitySelectView extends ConstraintLayout {
      * @param hotCity     热门城市列表
      * @param currentCity 当前城市
      */
-    public void bindData(List<CityModel> allCity, List<CityModel> hotCity, CityModel currentCity) {
+    public void bindData(List<DataModel> allCity, List<DataModel> hotCity, DataModel currentCity) {
         if (allCity != null) {
-            for (CityModel cityModel : allCity) {
+            for (DataModel dataModel : allCity) {
                 try {
-                    String pingYin = PinyinHelper.convertToPinyinString(cityModel.getCityName(), " ", PinyinFormat.WITHOUT_TONE);
-                    cacheList.add(new CityInfoModel(CityInfoModel.TYPE_NORMAL, cityModel.getCityName(), pingYin.substring(0, 1), pingYin, cityModel.getExtra()));
+                    String pingYin = PinyinHelper.convertToPinyinString(dataModel.getDataName(), " ", PinyinFormat.WITHOUT_TONE);
+                    cacheList.add(new CityInfoModel(CityInfoModel.TYPE_NORMAL, dataModel.getDataName(), pingYin.substring(0, 1), pingYin, dataModel.getExtra()));
                 } catch (PinyinException e) {
                     e.printStackTrace();
                 }
@@ -247,8 +247,8 @@ public class CitySelectView extends ConstraintLayout {
 
             if (hotCity != null) {
                 List<CityInfoModel> hotList = new ArrayList<>();
-                for (CityModel cityModel : hotCity) {
-                    hotList.add(new CityInfoModel(0, cityModel.getCityName(), "", "", cityModel.getExtra()));
+                for (DataModel dataModel : hotCity) {
+                    hotList.add(new CityInfoModel(0, dataModel.getDataName(), "", "", dataModel.getExtra()));
                 }
 
                 mainAdapter.bindHotCity(hotList);
@@ -256,7 +256,7 @@ public class CitySelectView extends ConstraintLayout {
             }
 
             if (currentCity != null)
-                cacheList.add(0, new CityInfoModel(CityInfoModel.TYPE_CURRENT, currentCity.getCityName(), "*", "当前定位城市", currentCity.getExtra()));
+                cacheList.add(0, new CityInfoModel(CityInfoModel.TYPE_CURRENT, currentCity.getDataName(), "*", "当前定位城市", currentCity.getExtra()));
 
             this.list.clear();
             this.list.addAll(cacheList);
@@ -271,14 +271,14 @@ public class CitySelectView extends ConstraintLayout {
      *
      * @param currentCity
      */
-    public void reBindCurrentCity(CityModel currentCity) {
+    public void reBindCurrentCity(DataModel currentCity) {
         if (!hasBindData) {
             throw new RuntimeException("请先绑定数据再调用重新绑定当前城市的方法");
         }
         for (CityInfoModel cityInfoModel : cacheList) {
             if (cityInfoModel.getType() == CityInfoModel.TYPE_CURRENT) {
                 //有 找到了
-                cityInfoModel.setCityName(currentCity.getCityName());
+                cityInfoModel.setCityName(currentCity.getDataName());
                 cityInfoModel.setExtra(currentCity.getExtra());
                 mainAdapter.notifyDataSetChanged();
                 return;

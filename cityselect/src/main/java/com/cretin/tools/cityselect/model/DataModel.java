@@ -1,8 +1,5 @@
 package com.cretin.tools.cityselect.model;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
 import java.io.Serializable;
 
 /**
@@ -11,24 +8,25 @@ import java.io.Serializable;
  * @email: mxnzp_life@163.com
  * @desc: 用户需要传入的数据
  */
-public class CityModel implements Serializable {
-    private String cityName;
+public class DataModel implements Serializable {
+
+    private String dataName;
     private Object extra;
 
-    public CityModel() {
+    public DataModel() {
     }
 
-    public CityModel(String cityName, Object extra) {
-        this.cityName = cityName;
+    public DataModel(String dataName, Object extra) {
+        this.dataName = dataName;
         this.extra = extra;
     }
 
-    public String getCityName() {
-        return cityName;
+    public String getDataName() {
+        return dataName;
     }
 
-    public void setCityName(String cityName) {
-        this.cityName = cityName;
+    public void setDataName(String dataName) {
+        this.dataName = dataName;
     }
 
     public Object getExtra() {

@@ -9,5 +9,10 @@ import com.cretin.tools.cityselect.model.CityInfoModel;
  * @desc: 添加描述
  */
 public interface OnItemClickListener {
-    void onItemClick(CityInfoModel cityInfoModel);
+    /**
+     * 选择Item
+     *
+     * @param dataInfoModel
+     */
+    void onItemClick(CityInfoModel dataInfoModel);
 }

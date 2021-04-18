@@ -2,11 +2,9 @@ package com.cretin.cityselect;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.blankj.utilcode.util.ResourceUtils;
@@ -14,7 +12,7 @@ import com.cretin.cityselect.utils.JSONHelper;
 import com.cretin.tools.cityselect.CityResponse;
 import com.cretin.tools.cityselect.callback.OnCitySelectListener;
 import com.cretin.tools.cityselect.callback.OnLocationListener;
-import com.cretin.tools.cityselect.model.CityModel;
+import com.cretin.tools.cityselect.model.DataModel;
 import com.cretin.tools.cityselect.view.CitySelectView;
 
 import java.util.ArrayList;
@@ -41,13 +39,13 @@ public class SelfSelectCityActivity extends AppCompatActivity {
         getSupportActionBar().hide();
 
         //状态栏透明 好看点 你自己看着办哈
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        }
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+//            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+//        }
 
         //状态看文字黑色好看点 你随意哈
         View decor = getWindow().getDecorView();
-        decor.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+        //decor.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
 
         setContentView(R.layout.activity_select_city);
 
@@ -60,7 +58,7 @@ public class SelfSelectCityActivity extends AppCompatActivity {
         new Thread() {
             @Override
             public void run() {
-                final List<CityModel> allCitys = new ArrayList<>();
+                final List<DataModel> allCitys = new ArrayList<>();
 
                 //这里是模仿网络请求获取城市列表 这里就放了一个json
                 final String city = ResourceUtils.readAssets2String("city.json");
@@ -70,10 +68,10 @@ public class SelfSelectCityActivity extends AppCompatActivity {
                     List<CityResponse.DataBean> data = cityResponse.getData();
                     for (CityResponse.DataBean item : data) {
                         if (item.getSons() == null) {
-                            allCitys.add(new CityModel(item.getName(), item.getAreaId()));
+                            allCitys.add(new DataModel(item.getName(), item.getAreaId()));
                         } else {
                             for (CityResponse.DataBean.SonsBean son : item.getSons()) {
-                                allCitys.add(new CityModel(son.getName(), son.getAreaId()));
+                                allCitys.add(new DataModel(son.getName(), son.getAreaId()));
                             }
                         }
                     }
@@ -82,15 +80,15 @@ public class SelfSelectCityActivity extends AppCompatActivity {
                 }
 
                 //设置热门城市列表 这都是瞎写的 哈哈哈
-                final List<CityModel> hotCitys = new ArrayList<>();
-                hotCitys.add(new CityModel("深圳", "10000000"));
-                hotCitys.add(new CityModel("广州", "10000001"));
-                hotCitys.add(new CityModel("北京", "10000002"));
-                hotCitys.add(new CityModel("天津", "10000003"));
-                hotCitys.add(new CityModel("武汉", "10000004"));
+                final List<DataModel> hotCitys = new ArrayList<>();
+                hotCitys.add(new DataModel("深圳", "10000000"));
+                hotCitys.add(new DataModel("广州", "10000001"));
+                hotCitys.add(new DataModel("北京", "10000002"));
+                hotCitys.add(new DataModel("天津", "10000003"));
+                hotCitys.add(new DataModel("武汉", "10000004"));
 
                 //设置当前城市数据
-                final CityModel currentCity = new CityModel("深圳", "10000000");
+                final DataModel currentCity = new DataModel("深圳", "10000000");
 
                 runOnUiThread(new Runnable() {
                     @Override
@@ -114,11 +112,11 @@ public class SelfSelectCityActivity extends AppCompatActivity {
         //设置城市选择之后的事件监听
         citySelectView.setOnCitySelectListener(new OnCitySelectListener() {
             @Override
-            public void onCitySelect(CityModel cityModel) {
-                Toast.makeText(SelfSelectCityActivity.this, "你点击了：" + cityModel.getCityName() + ":" + cityModel.getExtra().toString(), Toast.LENGTH_SHORT).show();
+            public void onCitySelect(DataModel dataModel) {
+                Toast.makeText(SelfSelectCityActivity.this, "你点击了：" + dataModel.getDataName() + ":" + dataModel.getExtra().toString(), Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent();
-                intent.putExtra("model", cityModel);
+                intent.putExtra("model", dataModel);
                 setResult(RESULT_OK, intent);
 
                 finish();
@@ -140,7 +138,7 @@ public class SelfSelectCityActivity extends AppCompatActivity {
                 citySelectView.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        citySelectView.reBindCurrentCity(new CityModel("广州", "10000001"));
+                        citySelectView.reBindCurrentCity(new DataModel("广州", "10000001"));
                     }
                 }, 2000);
             }

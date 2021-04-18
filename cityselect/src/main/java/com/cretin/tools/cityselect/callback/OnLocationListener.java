@@ -7,5 +7,8 @@ package com.cretin.tools.cityselect.callback;
  * @desc: 添加描述
  */
 public interface OnLocationListener {
+    /**
+     * 定位回调
+     */
     void onLocation();
 }

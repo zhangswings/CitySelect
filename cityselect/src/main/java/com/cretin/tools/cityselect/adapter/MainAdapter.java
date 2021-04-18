@@ -7,14 +7,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.cretin.tools.cityselect.R;
 import com.cretin.tools.cityselect.callback.OnItemClickListener;
 import com.cretin.tools.cityselect.callback.OnLocationListener;
 import com.cretin.tools.cityselect.model.CityInfoModel;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class MainAdapter extends RecyclerView.Adapter<MainAdapter.BaseViewHolder> {
@@ -94,9 +92,9 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.BaseViewHolder
                 hotCityHolder.recyclerView.setLayoutManager(new GridLayoutManager(mContext, 3));
                 adapter.setItemClickListener(new OnItemClickListener() {
                     @Override
-                    public void onItemClick(CityInfoModel cityInfoModel) {
+                    public void onItemClick(CityInfoModel dataInfoModel) {
                         if (itemClickListener != null) {
-                            itemClickListener.onItemClick(cityInfoModel);
+                            itemClickListener.onItemClick(dataInfoModel);
                         }
                     }
                 });

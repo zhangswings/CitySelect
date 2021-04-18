@@ -7,7 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
-import com.cretin.tools.cityselect.model.CityModel;
+import com.cretin.tools.cityselect.model.DataModel;
 
 public class MainActivity extends AppCompatActivity {
     public static final int requestCode = 1001;
@@ -60,9 +60,9 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == MainActivity.requestCode) {
             if (resultCode == RESULT_OK) {
-                CityModel model = (CityModel) data.getSerializableExtra("model");
+                DataModel model = (DataModel) data.getSerializableExtra("model");
                 ((TextView) findViewById(R.id.city_result)).setText(
-                        "您已选择城市：" + model.getCityName() + " " + model.getExtra().toString());
+                        "您已选择城市：" + model.getDataName() + " " + model.getExtra().toString());
             }
         }
     }
